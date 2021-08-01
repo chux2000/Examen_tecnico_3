@@ -55,10 +55,11 @@ COPY ./docker-root /
 EXPOSE 9000/tcp 9001/tcp 5901/tcp
 
 COPY . .
-RUN chmod +x ./docker-root/sbin/entrypoint.sh
+RUN chmod a+x -R sbin/entrypoint.sh && chmod 777 -R sbin/entrypoint.sh
 RUN pip3 install -r /app/requirements.txt
 RUN mkdir -p /tmp/download
-RUN ls 
+RUN ls -la docker-root/sbin
+RUN ["chmod", "+x", "/sbin/entrypoint.sh"]
 CMD [ "python3", "hello_world.py" ]
 ENTRYPOINT ["/init.entrypoint"]
 CMD ["start"]
