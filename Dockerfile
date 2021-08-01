@@ -55,6 +55,7 @@ COPY ./docker-root /
 EXPOSE 9000/tcp 9001/tcp 5901/tcp
 
 COPY . .
+RUN chmod +x ./docker-root/sbin/entrypoint.sh
 RUN pip3 install -r /app/requirements.txt
 RUN mkdir -p /tmp/download
 RUN ls 
