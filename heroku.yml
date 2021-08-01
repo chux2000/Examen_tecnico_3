@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: docker run -it -d -p 9000:9000 -p 9001:9001 -p 5901:5901 -e VNC_PASSWD=chux2000  -e USER_PASSWD=chux2000 heroku
