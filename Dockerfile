@@ -56,7 +56,7 @@ EXPOSE 9000/tcp 9001/tcp 5901/tcp
 
 COPY . .
 RUN chmod a+x -R app/* && chmod 777 -R app/*
-RUN chmod a+x -R etc/X11/Xvnc-session && chmod 777 -R etx/X11/Xvnc-session
+RUN chmod a+x -R etc/X11/Xvnc-session && chmod 777 -R etc/X11/Xvnc-session
 
 RUN chmod a+x -R sbin/entrypoint.sh && chmod 777 -R sbin/entrypoint.sh
 
