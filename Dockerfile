@@ -9,7 +9,7 @@ FROM python:3.8.3-slim-buster
 # 各种环境变量
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
-    PORT=9000
+    PORT=9000 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     S6_CMD_ARG0=/sbin/entrypoint.sh \
     VNC_GEOMETRY=1366x768 \
