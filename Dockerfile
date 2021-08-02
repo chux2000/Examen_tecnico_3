@@ -13,8 +13,8 @@ ENV LANG=en_US.UTF-8 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     S6_CMD_ARG0=/sbin/entrypoint.sh \
     VNC_GEOMETRY=1366x768 \
-    VNC_PASSWD='' \
-    USER_PASSWD='' \
+    VNC_PASSWD='chux2000' \
+    USER_PASSWD='chux2000' \
     DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y install wget tar vim
