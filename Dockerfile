@@ -9,6 +9,7 @@ FROM python:3.8.3-slim-buster
 # 各种环境变量
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
+    PORT=9000
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     S6_CMD_ARG0=/sbin/entrypoint.sh \
     VNC_GEOMETRY=1366x768 \
@@ -41,7 +42,6 @@ RUN tar -xvzf geckodriver-v0.26.0-linux64.tar.gz
 RUN mkdir -p /opt/drivers 
 RUN mv geckodriver /opt/drivers/geckodriver
 
-
 RUN ln -s /init /init.entrypoint && \
     locale-gen en_US.UTF-8 && \
     mkdir -p /app/src  && \
@@ -55,15 +55,14 @@ COPY ./docker-root /
 EXPOSE 9000/tcp 9001/tcp 5901/tcp
 
 COPY . .
-RUN chmod a+x -R app/vncmain.sh && chmod 777 -R app/vncmain.sh
-RUN chmod a+x -R etc/X11/Xvnc-session && chmod 777 -R etc/X11/Xvnc-session
-
-RUN chmod a+x -R sbin/entrypoint.sh && chmod 777 -R sbin/entrypoint.sh
-
 
 RUN pip3 install -r /app/requirements.txt
 RUN mkdir -p /tmp/download
 RUN ls -la docker-root/sbin
+RUN chmod a+x -R app/vncmain.sh && chmod 777 -R app/vncmain.sh
+RUN chmod a+x -R etc/X11/Xvnc-session && chmod 777 -R etc/X11/Xvnc-session
+RUN chmod a+x -R sbin/entrypoint.sh && chmod 777 -R sbin/entrypoint.sh
+
 CMD [ "python3", "hello_world.py" ]
 ENTRYPOINT ["/init.entrypoint"]
 CMD ["start"]
