@@ -63,6 +63,6 @@ RUN chmod a+x -R app/vncmain.sh && chmod 777 -R app/vncmain.sh
 RUN chmod a+x -R etc/X11/Xvnc-session && chmod 777 -R etc/X11/Xvnc-session
 RUN chmod a+x -R sbin/entrypoint.sh && chmod 777 -R sbin/entrypoint.sh
 
-CMD [ "python3", "hello_world.py" ]
+#CMD [ "python3", "hello_world.py" ]
 ENTRYPOINT ["/init.entrypoint"]
-CMD ["start"]
+#CMD ["start"]
