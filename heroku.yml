@@ -2,6 +2,6 @@ build:
   docker:
     web: Dockerfile
   config:
-    PORT: 9000:9000
+    PORT: 9000
 #run:
 #  web:  bundle exec puma -C config/puma.rb
