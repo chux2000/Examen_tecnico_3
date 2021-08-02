@@ -65,4 +65,4 @@ RUN chmod a+x -R sbin/entrypoint.sh && chmod 777 -R sbin/entrypoint.sh
 
 #CMD [ "python3", "hello_world.py" ]
 ENTRYPOINT ["/init.entrypoint"]
-#CMD ["start"]
+CMD ["start"]
