@@ -5,7 +5,8 @@ jobs:
    steps:
 # build and push Docker image
       - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
+#          TAG=0.1.$CIRCLE_BUILD_NUM
+          cd /home/circleci/project/Examen_tecnico_3
           docker build -t chux2000/clayvnc:$TAG .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push chux2000/clayvnc:$TAG
