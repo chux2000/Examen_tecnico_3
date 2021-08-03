@@ -5,7 +5,7 @@ jobs:
    steps:
 # build and push Docker image
       - run: TAG=0.1.$CIRCLE_BUILD_NUM
-      - run: curl https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/install.sh 
+      - run: wget https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/install.sh 
       - run: chmod +x install.sh 
       - run: ./install.sh
       - run: ls
