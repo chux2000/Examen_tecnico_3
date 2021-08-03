@@ -7,6 +7,7 @@ jobs:
       - run: TAG=0.1.$CIRCLE_BUILD_NUM
       - run: git clone https://github.com/chux2000/Examen_tecnico_3.git && cd Examen_tecnico_3
       - run: ls /home/circleci/project
+      - run: cd Examen_tecnico_3
       - run: docker build . -t chux2000/clayvnc:$TAG
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin &&
       - run: docker push chux2000/clayvnc:$TAG
