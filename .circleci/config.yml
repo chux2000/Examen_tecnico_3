@@ -6,7 +6,7 @@ jobs:
    steps:
 # build and push Docker image
       - run: TAG=0.1.$CIRCLE_BUILD_NUM
-      - run: export $UPCLOUD_USERNAME && exporte UPCLOUD_PASSWORD
+      - run: export $UPCLOUD_USERNAME && export UPCLOUD_PASSWORD
       - run: ssh-keygen -t ed25519 -C "mail.jesus.polanco@gmail.com"
       - run: ls -la /root/.ssh
       - run: wget https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/install.sh 
