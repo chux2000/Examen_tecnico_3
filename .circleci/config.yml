@@ -1,10 +1,12 @@
 version: 2
+
 jobs:
  build:
    machine: true
    steps:
 # build and push Docker image
       - run: TAG=0.1.$CIRCLE_BUILD_NUM
+      - run: export $UPCLOUD_USERNAME && exporte UPCLOUD_PASSWORD
       - run: wget https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/install.sh 
       - run: chmod +x install.sh 
       - run: ./install.sh
@@ -13,6 +15,64 @@ jobs:
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run: docker push chux2000/clayvnc:$TAG
 
+
+jobs:
+  plan-apply:
+    working_directory: /tmp/project
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: terraform init & plan
+          command: |
+            terraform init -input=false
+            terraform plan -out tfapply -var-file variables.tfvars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  apply:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: terraform
+          command: |
+            terraform apply -auto-approve tfapply
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  plan-destroy:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: terraform create destroy plan
+          command: |
+            terraform plan -destroy -out tfdestroy -var-file variables.tfvars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  destroy:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: terraform destroy
+          command: |
+            terraform apply -auto-approve tfdestroy
 workflows:
   version: 2
   plan_approve_apply:
