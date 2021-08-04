@@ -15,8 +15,6 @@ jobs:
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run: docker push chux2000/clayvnc:$TAG
 
-
-jobs:
   plan-apply:
     working_directory: /tmp/project
     docker:
