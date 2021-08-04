@@ -8,7 +8,30 @@ jobs:
       - run: wget https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/install.sh 
       - run: chmod +x install.sh 
       - run: ./install.sh
-      - run: ls
+      - run: docker images
 #     - run: docker build . -t chux2000/clayvnc:$TAG
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run: docker push chux2000/clayvnc:$TAG
+
+workflows:
+  version: 2
+  plan_approve_apply:
+    jobs:
+      - plan-apply
+      - hold-apply:
+          type: approval
+          requires:
+            - plan-apply
+      - apply:
+          requires:
+            - hold-apply
+      - plan-destroy:
+          requires:
+            - apply
+      - hold-destroy:
+          type: approval
+          requires:
+            - plan-destroy
+      - destroy:
+          requires:
+            - hold-destroy
