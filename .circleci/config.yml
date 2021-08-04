@@ -24,8 +24,7 @@ jobs:
      - run:
          name: terraform init & plan
          command: |
-#          export $UPCLOUD_USERNAME && exporte UPCLOUD_PASSWORD
-           terraform init -input=false
+           terraform init
            terraform plan -out tfapply
      - persist_to_workspace:
          root: .
@@ -41,7 +40,6 @@ jobs:
      - run:
         name: terraform
         command: |
-#         export $UPCLOUD_USERNAME && exporte UPCLOUD_PASSWORD
           terraform apply -auto-approve tfapply
      - persist_to_workspace:
          root: .
@@ -57,7 +55,6 @@ jobs:
      - run:
         name: terraform create destroy plan
         command: |
-#         export $UPCLOUD_USERNAME && exporte UPCLOUD_PASSWORD
           terraform plan -destroy -out tfdestroy
      - persist_to_workspace:
         root: .
@@ -73,7 +70,6 @@ jobs:
      - run:
          name: terraform destroy
          command: |
-#          export $UPCLOUD_USERNAME && exporte UPCLOUD_PASSWORD
            terraform apply -auto-approve tfdestroy
 
 workflows:
