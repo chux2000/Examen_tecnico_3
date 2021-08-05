@@ -52,14 +52,14 @@ resource "upcloud_server" "server1" {
     ]
   }
 
-#  provisioner "remote-exec" {
-#    inline = [
-#      "curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh"
-#    ]
-#  }
-#  provisioner "remote-exec" {
-#    inline = [
-#      "wget https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/install.sh && chmod +x install.sh"
-#    ]
-#  }
+ provisioner "remote-exec" {
+   inline = [
+     "curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh"
+   ]
+ }
+ provisioner "remote-exec" {
+   inline = [
+     "docker run -it -d -p 80:9000 -p 81:9001 -p 82:5901 -e VNC_PASSWD=chux2000  -e USER_PASSWD=chux2000 clayvnc"
+   ]
+ }
 }
