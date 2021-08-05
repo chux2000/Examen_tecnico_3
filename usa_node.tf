@@ -42,7 +42,7 @@ resource "upcloud_server" "server1" {
     host        = self.network_interface[0].ip_address
     type        = "ssh"
     user        = "root"
-    private_key = file("/home/circleci/project/Examen_tecnico_3/id_rsa")
+    private_key = file("~/project/Examen_tecnico_3/id_rsa")
   }
 
   # Remotely executing a command on the server
