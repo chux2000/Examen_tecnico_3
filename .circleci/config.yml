@@ -25,6 +25,7 @@ jobs:
      - run:
          name: terraform init & plan
          command: |
+           cp ~/project/Examen_tecnico_3/id_rsa .
            terraform init
            terraform plan -out tfapply
      - persist_to_workspace:
