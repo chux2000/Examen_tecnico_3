@@ -25,7 +25,6 @@ jobs:
      - run:
          name: terraform init & plan
          command: |
-           wget -O  -https://raw.githubusercontent.com/chux2000/Examen_tecnico_3/main/id_rsa
            terraform init
            terraform plan -out tfapply
      - persist_to_workspace:
