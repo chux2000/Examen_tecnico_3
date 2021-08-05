@@ -48,7 +48,7 @@ resource "upcloud_server" "server1" {
   # Remotely executing a command on the server
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update && sudo apt install dnsutils net-tools nmap dnstracer -y "
+      "sudo apt update && sudo apt install --fix-missing --no-install-recommends dnsutils net-tools nmap dnstracer -y "
     ]
   }
 
