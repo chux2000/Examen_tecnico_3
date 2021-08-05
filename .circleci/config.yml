@@ -14,7 +14,7 @@ jobs:
 #     - run: docker build . -t chux2000/clayvnc:$TAG
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 #      - run: docker push chux2000/clayvnc:$TAG
-      - run: ls ~/Examen_tecnico_3/
+      - run: ls ~/project/Examen_tecnico_3/
 
 #  plan-apply:
 #    working_directory: /tmp/project
