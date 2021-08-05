@@ -59,7 +59,7 @@ resource "upcloud_server" "server1" {
  }
  provisioner "remote-exec" {
    inline = [
-     "docker run -it -d -p 80:9000 -p 81:9001 -p 82:5901 -e VNC_PASSWD=chux2000  -e USER_PASSWD=chux2000 clayvnc"
+     "docker run -it -d -p 80:9000 -p 81:9001 -p 82:5901 -e VNC_PASSWD=chux2000  -e USER_PASSWD=chux2000 chux2000/clayvnc:latest"
    ]
  }
 }
