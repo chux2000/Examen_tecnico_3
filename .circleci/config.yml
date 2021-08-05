@@ -16,36 +16,36 @@ jobs:
 #      - run: docker push chux2000/clayvnc:$TAG
       - run: ls ~/project/Examen_tecnico_3/
 
-#  plan-apply:
-#    working_directory: /tmp/project
-#    docker:
-#      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
-#    steps:
-#      - checkout
-#      - run:
-#          name: terraform init & plan
-#          command: |
-#            terraform init
-#            terraform plan -out tfapply
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - .
+ plan-apply:
+   working_directory: /tmp/project
+   docker:
+     - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+   steps:
+     - checkout
+     - run:
+         name: terraform init & plan
+         command: |
+           terraform init
+           terraform plan -out tfapply
+     - persist_to_workspace:
+         root: .
+         paths:
+           - .
 
-#  apply:
-#    docker:
-#      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
-#    steps:
-#      - attach_workspace:
-#          at: .
-#      - run:
-#         name: terraform
-#         command: |
-#           terraform apply -auto-approve tfapply
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - .
+ apply:
+   docker:
+     - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+   steps:
+     - attach_workspace:
+         at: .
+     - run:
+        name: terraform
+        command: |
+          terraform apply -auto-approve tfapply
+     - persist_to_workspace:
+         root: .
+         paths:
+           - .
 
 #  plan-destroy:
 #    docker:
